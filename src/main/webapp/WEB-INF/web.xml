@@ -39,8 +39,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DispatchServlet</servlet-name>
-		<!-- <url-pattern>*.do</url-pattern> -->
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
+	<!--	<url-pattern>/</url-pattern>-->
 	</servlet-mapping>
 
 	<!-- restful配置 -->
