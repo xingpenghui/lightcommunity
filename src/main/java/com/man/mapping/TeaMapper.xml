@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.man.dao.TeaMapper">
+  <resultMap id="BaseResultMap" type="com.man.pojo.Tea">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="focusnum" jdbcType="BIGINT" property="focusnum" />
+    <result column="test" jdbcType="VARCHAR" property="test" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="styleid" jdbcType="INTEGER" property="styleid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, focusnum, test, imgurl, styleid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_tea
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_tea
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.man.pojo.Tea">
+    insert into t_tea (id, title, focusnum, 
+      test, imgurl, styleid
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{focusnum,jdbcType=BIGINT}, 
+      #{test,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, #{styleid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.man.pojo.Tea">
+    insert into t_tea
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="focusnum != null">
+        focusnum,
+      </if>
+      <if test="test != null">
+        test,
+      </if>
+      <if test="imgurl != null">
+        imgurl,
+      </if>
+      <if test="styleid != null">
+        styleid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="focusnum != null">
+        #{focusnum,jdbcType=BIGINT},
+      </if>
+      <if test="test != null">
+        #{test,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="styleid != null">
+        #{styleid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.man.pojo.Tea">
+    update t_tea
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="focusnum != null">
+        focusnum = #{focusnum,jdbcType=BIGINT},
+      </if>
+      <if test="test != null">
+        test = #{test,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="styleid != null">
+        styleid = #{styleid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.man.pojo.Tea">
+    update t_tea
+    set title = #{title,jdbcType=VARCHAR},
+      focusnum = #{focusnum,jdbcType=BIGINT},
+      test = #{test,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      styleid = #{styleid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

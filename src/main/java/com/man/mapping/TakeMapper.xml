@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.man.dao.TakeMapper">
+  <resultMap id="BaseResultMap" type="com.man.pojo.Take">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="imgurl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="headname" jdbcType="CHAR" property="headname" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="styleid" jdbcType="CHAR" property="styleid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, imgurl, headname, text, styleid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_take
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_take
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.man.pojo.Take">
+    insert into t_take (id, imgurl, headname, 
+      text, styleid)
+    values (#{id,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, #{headname,jdbcType=CHAR}, 
+      #{text,jdbcType=VARCHAR}, #{styleid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.man.pojo.Take">
+    insert into t_take
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imgurl != null">
+        imgurl,
+      </if>
+      <if test="headname != null">
+        headname,
+      </if>
+      <if test="text != null">
+        text,
+      </if>
+      <if test="styleid != null">
+        styleid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="headname != null">
+        #{headname,jdbcType=CHAR},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="styleid != null">
+        #{styleid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.man.pojo.Take">
+    update t_take
+    <set>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="headname != null">
+        headname = #{headname,jdbcType=CHAR},
+      </if>
+      <if test="text != null">
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="styleid != null">
+        styleid = #{styleid,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.man.pojo.Take">
+    update t_take
+    set imgurl = #{imgurl,jdbcType=VARCHAR},
+      headname = #{headname,jdbcType=CHAR},
+      text = #{text,jdbcType=VARCHAR},
+      styleid = #{styleid,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
